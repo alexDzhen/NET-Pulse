@@ -39,8 +39,8 @@ You need CMake 3.20 or newer and a C++17 compiler.
 **Linux**
 
 ```sh
-git clone https://github.com/alexDzhen/netpulse.git
-cd netpulse
+git clone https://github.com/alexDzhen/NET-Pulse.git
+cd NET-Pulse
 ./scripts/build.sh
 sudo ./build/netpulse 127.0.0.1
 ```
@@ -58,8 +58,8 @@ Install Visual Studio 2022 with the "Desktop development with C++" workload and 
 the commands in "Developer PowerShell for VS 2022", where `cmake` is already available.
 
 ```powershell
-git clone https://github.com/alexDzhen/netpulse.git
-cd netpulse
+git clone https://github.com/alexDzhen/NET-Pulse.git
+cd NET-Pulse
 powershell -ExecutionPolicy Bypass -File scripts\build.ps1
 .\build\Release\netpulse.exe 127.0.0.1
 ```

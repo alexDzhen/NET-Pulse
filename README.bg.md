@@ -41,7 +41,7 @@ round-trip min/avg/max/stddev = 0.058/0.070/0.087/0.010 ms
 **Linux**
 
 ```sh
-git clone https://github.com/alexDzhen/netpulse.git
+git clone https://github.com/alexDzhen/NET-Pulse.git
 cd netpulse
 ./scripts/build.sh
 sudo ./build/netpulse 127.0.0.1
@@ -60,7 +60,7 @@ netpulse example.com
 изпълнете командите в "Developer PowerShell for VS 2022", където `cmake` е наличен.
 
 ```powershell
-git clone https://github.com/alexDzhen/netpulse.git
+git clone https://github.com/alexDzhen/NET-Pulse.git
 cd netpulse
 powershell -ExecutionPolicy Bypass -File scripts\build.ps1
 .\build\Release\netpulse.exe 127.0.0.1
