@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Ping loopback through a raw socket (Linux)
+        if: runner.os == 'Linux'
+        run: sudo ./build/netpulse -c 3 -i 0.2 127.0.0.1
+
+      - name: Ping loopback (Windows)
+        if: runner.os == 'Windows'
+        run: .\build\Release\netpulse.exe -c 3 -i 0.2 127.0.0.1
+
+      - name: Ping IPv6 loopback (informational, runners may lack IPv6)
+        continue-on-error: true
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            ./build/Release/netpulse.exe -c 3 -i 0.2 ::1
+          else
+            sudo ./build/netpulse -c 3 -i 0.2 ::1
+          fi
